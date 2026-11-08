@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create, download and share Wrap N Shine invoices.">
+  <title>Invoice Studio · Wrap N Shine</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./vendor/pdf-lib.min.js"></script>
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="brand"><span class="mark">W<span>/</span>S</span><div>WRAP N SHINE<small>BLUE STUDIO</small></div></div>
+    <span class="privacy"><span></span> Processed on this device</span>
+  </div>
+</header>
+<main>
+  <div class="intro"><p class="eyebrow">STUDIO TOOLS</p><h1>Invoice Studio</h1><p>Enter the job details, then download or share the finished PDF.</p></div>
+  <div class="workspace">
+    <form id="invoice-form" class="panel editor">
+      <div class="panel-header"><h2>Invoice details</h2><p>Fields marked * are required.</p></div>
+      <fieldset>
+        <legend><span>01</span> Invoice</legend>
+        <div class="fields">
+          <label>Invoice number *<input name="number" placeholder="e.g. WRAP-26-27-39" maxlength="32" required></label>
+          <label>Invoice date *<input name="date" type="date" min="1900-01-01" max="9999-12-31" required></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span>02</span> Customer &amp; vehicle</legend>
+        <div class="fields">
+          <label>Customer name *<input name="customer" placeholder="Full name" maxlength="60" required></label>
+          <label>Mobile number<input name="mobile" type="tel" placeholder="Customer phone" maxlength="22"></label>
+          <label class="wide">Address<input name="address" placeholder="Street, area or city" maxlength="80"></label>
+          <label>Place<input name="place" placeholder="City" maxlength="45"></label>
+          <label>Vehicle model<input name="model" placeholder="e.g. Hunter 350" maxlength="45"></label>
+          <label class="wide">Vehicle registration number<input name="registration" placeholder="Registration or chassis number" maxlength="40"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span>03</span> Service &amp; pricing</legend>
+        <div class="fields">
+          <label class="wide">Service description *<input name="service" placeholder="e.g. Armour X-3 PPF" maxlength="54" required></label>
+          <label class="wide">Service notes <span class="optional">optional</span><textarea name="notes" placeholder="Warranty or other service details" rows="2" maxlength="150"></textarea></label>
+          <label>Price (₹) *<input name="price" inputmode="decimal" placeholder="0.00" maxlength="10" required></label>
+          <label>Discount (₹)<input name="discount" inputmode="decimal" placeholder="0.00" maxlength="10"></label>
+        </div>
+      </fieldset>
+    </form>
+    <section class="panel output" aria-labelledby="preview-title">
+      <div class="panel-header preview-header"><div><h2 id="preview-title">Invoice preview</h2><p>Updates as you type</p></div><span class="badge">A4 PDF</span></div>
+      <div class="preview"><svg id="preview" viewBox="0 0 595.28 514" role="img" aria-label="Invoice preview">
+        <image href="./invoice-template.png" width="595.28" height="514" preserveAspectRatio="none"></image><g id="preview-text"></g>
+      </svg></div>
+      <div class="export">
+        <div class="total"><span>Amount payable</span><strong id="total">—</strong></div>
+        <div class="actions"><button type="button" id="download" disabled>Download PDF</button><button type="button" id="share" disabled>Share to WhatsApp</button></div>
+        <p id="status" role="status">Complete the required fields to export.</p>
+      </div>
+    </section>
+  </div>
+  <footer>Wrap N Shine · Blue Studio</footer>
+</main>
+</body>
+</html>
